@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue js bengal dev</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap-icons.min.css" />
+  </head>
+  <body>
+    <div id="app" class="p-5">
+      <!-- component and template-->
+
+      <div class="mt-3 rounded-3">
+        <h1>Todo App</h1>
+        <p>Interactive todo app</p>
+      </div>
+      <div class="p-3 rounded-3 shadow my-4">
+        <form
+          action=""
+          class="input-group d-flex"
+          @submit.prevent="formHandler"
+        >
+          <input
+            v-model="newTodoText"
+            type="text"
+            placeholder="Add a task"
+            class="form-control"
+          />
+          <button class="btn btn-primary">+</button>
+        </form>
+      </div>
+      <todo
+        v-for="todo in todos"
+        :todo="todo"
+        @delete-todo="removeTodo"
+        message="This is from parent component as props"
+      />
+      <!-- /component and template-->
+      <!-- Todo App Start-->
+
+      <!-- /Todo App End-->
+    </div>
+    <script src="vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

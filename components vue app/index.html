@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue js bengal dev</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="app" class="p-5">
+      <h1>{{ brand +' '+ product}}</h1>
+      <p>{{ description }}</p>
+
+      <a :href="url"><button class="btn btn-success">Facebook</button></a>
+      <!-- <button class="btn btn-primary mx-5">Cart ({{ cart }})</button> -->
+      <button class="btn btn-primary mx-5">Cart ({{ cart.length }})</button>
+      <product-display
+        :premium="premium"
+        @clicked-in-component="updateCart"
+        @clicked-in-component-to-delete="deleteCart"
+      ></product-display>
+      <!--received click event from child component and call method in app.js-->
+      <product-details :details_product="details_product"></product-details>
+      <ratings @review-submitted="addReview"></ratings>
+      <review-list :reviews="reviews" v-if="reviews.length"></review-list>
+    </div>
+    <script src="vue.js"></script>
+    <script src="app.js"></script>
+    <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/ProductDetails.js"></script>
+    <script src="./components/Ratings.js"></script>
+    <script src="./components/ReviewList.js"></script>
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>

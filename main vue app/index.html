@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue js bengal dev</title>
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div id="app" class="p-5">
+      <h1>{{ brand +' '+ product}}</h1>
+      <p>{{ description }}</p>
+
+      <a :href="url"><button class="btn btn-success">Facebook</button></a>
+
+      <div class="container m-5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="product_image">
+              <!-- <div v-if="inStock"><img :src="image" alt="" /></div>
+              <div v-else><img :src="outStockImage" alt="" /></div> -->
+              <img :class="'out-of-stock'" :src="image" alt="" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="product_info">
+              <h1>{{ brand +' '+ product }}</h1>
+              <h2>{{ title }}(computed property)</h2>
+              <h2 v-show="onSale">{{ onSaleProduct }}(computed property)</h2>
+              <p v-if="onSale" class="btn btn-danger">On Sale!!!!</p>
+              <p v-if="inStock">In Stock</p>
+              <p v-else>Out Stock</p>
+
+              <p>Product Details</p>
+              <ul>
+                <li v-for="detail in details">{{ detail }}</li>
+              </ul>
+
+              <p>Colors</p>
+              <ul>
+                <!-- v-for="variant in variants" -->
+                <!-- @mouseover="changeImage(variant.image)" -->
+                <li
+                  v-for="(variant,index) in variants"
+                  :key="variant.id"
+                  @mouseover="changeVariant(index)"
+                  class="colored_circle"
+                  :style="{backgroundColor:variant.color}"
+                >
+                  <!-- {{ variant.color }} (id:{{ variant.id }}) -->
+                </li>
+              </ul>
+
+              <p>Sizes</p>
+              <ul>
+                <li v-for="size in sizes">{{ size }}</li>
+              </ul>
+              <p v-if="inventory>10">Inventory is full</p>
+              <p v-else-if="inventory<=10 && inventory>0 ">
+                Add product in Inventory
+              </p>
+              <p v-else>Not in Inventory</p>
+
+              <button
+                v-on:click="addToCart"
+                class="btn btn-primary"
+                :class="{'disabledButton':!inStock}"
+                :disabled="!inStock"
+              >
+                Add to Cart
+              </button>
+
+              <button v-on:click="deleteFromCart" class="btn btn-primary mx-5">
+                Delete Cart
+              </button>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary">Cart ({{ cart }})</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="vue.js"></script>
+    <script src="app.js"></script>
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
+</html>
